@@ -11,6 +11,15 @@
 |
 */
 
+use Illuminate\Support\Facades\Mail;
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/email/raw', 'EmailController@raw');
+Route::get('/email/template', 'EmailController@template');
+Route::get('/email/mailable', function () {
+    Mail::to('530004000@qq.com')->send(new \App\Mail\TestEmail());
+    return 'ok';
 });
